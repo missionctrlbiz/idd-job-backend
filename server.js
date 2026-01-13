@@ -28,7 +28,15 @@ const defaultOrigins = [
 const originsEnv = process.env.CORS_ORIGINS || defaultOrigins.join(',');
 const allowedOrigins = originsEnv.split(',').map(o => o.trim()).filter(Boolean);
 
-const corsOptions = {
+// During development it's convenient to allow requests from any origin
+// Set ALLOW_ALL_ORIGINS=true in env to temporarily allow all origins (useful for local testing)
+const allowAll = process.env.NODE_ENV === 'development' || process.env.ALLOW_ALL_ORIGINS === 'true';
+
+const corsOptions = allowAll ? {
+    origin: true,
+    credentials: true,
+    optionsSuccessStatus: 200
+} : {
     origin: function (origin, callback) {
         // Allow requests with no origin (like mobile apps, curl, or server-to-server)
         if (!origin) return callback(null, true);
