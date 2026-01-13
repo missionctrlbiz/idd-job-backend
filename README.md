@@ -131,12 +131,21 @@ git push -u origin main
 
 In the Render dashboard, go to **Environment** and add:
 
-| Key          | Value                                        |
-| ------------ | -------------------------------------------- |
-| `NODE_ENV`   | `production`                                 |
-| `MONGO_URI`  | `mongodb+srv://...` (your MongoDB Atlas URI) |
-| `JWT_SECRET` | `your_secret_key`                            |
-| `JWT_EXPIRE` | `30d`                                        |
+| Key                       | Value                                                     | Notes                                              |
+| ------------------------- | --------------------------------------------------------- | -------------------------------------------------- |
+| `NODE_ENV`                | `production`                                              | Required                                           |
+| `MONGO_DB`                | `mongodb+srv://...` (your MongoDB Atlas URI)              | Required (note: use `MONGO_DB`, not `MONGO_URI`)   |
+| `JWT_SECRET`              | `your_secret_key`                                         | Required - generate a secure random string         |
+| `JWT_EXPIRE`              | `30d`                                                     | Optional (default: 30d)                            |
+| `CORS_ORIGINS`            | `https://iddjobplatform.vercel.app`                       | Optional - defaults to Vercel URLs                 |
+| `ALLOW_LOCALHOST_ORIGIN`  | `true`                                                    | Optional - set to `true` for local frontend testing |
+| `ALLOW_ALL_ORIGINS`       | `false`                                                   | ⚠️ Emergency debugging only - keep `false`         |
+
+**CORS Configuration Notes:**
+
+- **Production (frontend deployed):** Set `CORS_ORIGINS` to your Vercel URL(s). Example: `https://iddjobplatform.vercel.app`
+- **Testing with local frontend:** Set `ALLOW_LOCALHOST_ORIGIN=true` to allow requests from `http://localhost:3000` while backend is on Render
+- **Never enable `ALLOW_ALL_ORIGINS` in production** - this disables CORS security entirely
 
 ### Step 5: Deploy
 
