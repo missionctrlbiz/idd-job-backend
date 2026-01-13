@@ -131,15 +131,15 @@ git push -u origin main
 
 In the Render dashboard, go to **Environment** and add:
 
-| Key                       | Value                                                     | Notes                                              |
-| ------------------------- | --------------------------------------------------------- | -------------------------------------------------- |
-| `NODE_ENV`                | `production`                                              | Required                                           |
-| `MONGO_DB`                | `mongodb+srv://...` (your MongoDB Atlas URI)              | Required (note: use `MONGO_DB`, not `MONGO_URI`)   |
-| `JWT_SECRET`              | `your_secret_key`                                         | Required - generate a secure random string         |
-| `JWT_EXPIRE`              | `30d`                                                     | Optional (default: 30d)                            |
-| `CORS_ORIGINS`            | `https://iddjobplatform.vercel.app`                       | Optional - defaults to Vercel URLs                 |
-| `ALLOW_LOCALHOST_ORIGIN`  | `true`                                                    | Optional - set to `true` for local frontend testing |
-| `ALLOW_ALL_ORIGINS`       | `false`                                                   | ⚠️ Emergency debugging only - keep `false`         |
+| Key                      | Value                                        | Notes                                               |
+| ------------------------ | -------------------------------------------- | --------------------------------------------------- |
+| `NODE_ENV`               | `production`                                 | Required                                            |
+| `MONGO_DB`               | `mongodb+srv://...` (your MongoDB Atlas URI) | Required (note: use `MONGO_DB`, not `MONGO_URI`)    |
+| `JWT_SECRET`             | `your_secret_key`                            | Required - generate a secure random string          |
+| `JWT_EXPIRE`             | `30d`                                        | Optional (default: 30d)                             |
+| `CORS_ORIGINS`           | `https://iddjobplatform.vercel.app`          | Optional - defaults to Vercel URLs                  |
+| `ALLOW_LOCALHOST_ORIGIN` | `true`                                       | Optional - set to `true` for local frontend testing |
+| `ALLOW_ALL_ORIGINS`      | `false`                                      | ⚠️ Emergency debugging only - keep `false`          |
 
 **CORS Configuration Notes:**
 
