@@ -7,9 +7,9 @@ const router = express.Router();
 router.use(protect); // All routes are protected
 
 router.route('/')
-    .post(authorize('candidate'), applyForJob);
+    .post(authorize('jobseeker'), applyForJob);
 
-router.get('/me', authorize('candidate'), getMyApplications);
+router.get('/me', authorize('jobseeker'), getMyApplications);
 
 router.get('/job/:jobId', authorize('employer', 'admin'), getJobApplications);
 
