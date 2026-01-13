@@ -16,7 +16,18 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:3000' })); // Allow frontend access
+
+// CORS - Allow frontend access
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://iddjobplatform.vercel.app',
+    'https://idd-job-platform.vercel.app'
+];
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true
+}));
+
 app.use(helmet());
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
