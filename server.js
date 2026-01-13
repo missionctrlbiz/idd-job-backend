@@ -5,6 +5,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import connectDB from './config/db.js';
 import jobRoutes from './routes/jobRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+import applicationRoutes from './routes/applicationRoutes.js';
 
 // Load env vars
 dotenv.config();
@@ -17,24 +19,45 @@ const app = express();
 // Middleware
 app.use(express.json());
 
-// CORS - Allow frontend access
-const allowedOrigins = [
+// CORS - allow origins from env or sensible defaults
+const defaultOrigins = [
     'http://localhost:3000',
     'https://iddjobplatform.vercel.app',
     'https://idd-job-platform.vercel.app'
 ];
-app.use(cors({
-    origin: allowedOrigins,
-    credentials: true
-}));
+const originsEnv = process.env.CORS_ORIGINS || defaultOrigins.join(',');
+const allowedOrigins = originsEnv.split(',').map(o => o.trim()).filter(Boolean);
+
+const corsOptions = {
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps, curl, or server-to-server)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            return callback(null, true);
+        }
+        return callback(new Error('CORS policy: This origin is not allowed'));
+    },
+    credentials: true,
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+// Ensure preflight requests are handled for all routes
+app.options('*', cors(corsOptions));
 
 app.use(helmet());
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
-// Mount routers
+// Mount routers (v1)
 app.use('/api/v1/jobs', jobRoutes);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/applications', applicationRoutes);
+
+// Backwards-compatible mounts (some clients may call /auth or /applications without the /api/v1 prefix)
+app.use('/auth', authRoutes);
+app.use('/applications', applicationRoutes);
 
 // Root route
 app.get('/', (req, res) => {
