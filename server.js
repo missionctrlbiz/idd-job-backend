@@ -26,7 +26,7 @@ app.use(express.json());
 // Default origins - production frontends
 const defaultOrigins = [
     'https://iddjobplatform.vercel.app',
-    'https://idd-job-platform.vercel.app'
+    'https://idd-job-platform.vercel.app'  // Keep both just in case
 ];
 
 // Parse CORS_ORIGINS from environment (comma-separated)
