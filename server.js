@@ -23,17 +23,24 @@ app.use(express.json());
 // CORS Configuration (Production-Ready)
 // ============================================================================
 
-// Default origins - production frontends
+// Default origins - production frontends (ALWAYS included)
 const defaultOrigins = [
-    'https://iddjobplatform.vercel.app',
-    'https://idd-job-platform.vercel.app'  // Keep both just in case
+    'https://iddjobplatform.vercel.app'  // Your actual Vercel deployment
 ];
 
-// Parse CORS_ORIGINS from environment (comma-separated)
+// Parse CORS_ORIGINS from environment (comma-separated) and MERGE with defaults
 const originsEnv = process.env.CORS_ORIGINS;
-let allowedOrigins = originsEnv
-    ? originsEnv.split(',').map(o => o.trim()).filter(Boolean)
-    : [...defaultOrigins];
+let allowedOrigins = [...defaultOrigins];  // Always start with defaults
+
+// Add any additional origins from environment
+if (originsEnv) {
+    const envOrigins = originsEnv.split(',').map(o => o.trim()).filter(Boolean);
+    envOrigins.forEach(origin => {
+        if (!allowedOrigins.includes(origin)) {
+            allowedOrigins.push(origin);
+        }
+    });
+}
 
 // ALLOW_LOCALHOST_ORIGIN: Explicitly allow http://localhost:3000 for local dev
 // Safe to enable on Render when testing with local frontend against hosted backend
