@@ -16,6 +16,13 @@ const connectDB = async () => {
         console.log(`MongoDB Atlas Connected: ${conn.connection.host}`);
     } catch (error) {
         console.error(`Error: ${error.message}`);
+        console.error('---------------------------------------------------');
+        console.error('❌ FAILED TO CONNECT TO MONGODB');
+        console.error('Common causes:');
+        console.error('1. IP Whitelist: Your current IP (or Render/Vercel IP) is not allowed in MongoDB Atlas.');
+        console.error('   Solution: Add 0.0.0.0/0 to Network Access in Atlas for production/cloud hosting.');
+        console.error('2. Invalid Credentials: Check your MONGO_DB connection string in .env');
+        console.error('---------------------------------------------------');
         process.exit(1);
     }
 };

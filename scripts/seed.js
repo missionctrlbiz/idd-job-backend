@@ -7,7 +7,7 @@ import connectDB from '../config/db.js';
 
 dotenv.config();
 
-connectDB();
+// connectDB(); // Moved to run() function
 
 // Realistic Users
 const users = [
@@ -142,6 +142,13 @@ const generateJobs = (employers) => {
                 'Reliable transportation',
                 'Ability to lift 50 lbs'
             ],
+            qualifications: [
+                'High School Diploma or GED',
+                'Valid Colorado Driver\'s License',
+                'Must pass background check',
+                'Reliable transportation',
+                'Ability to lift 50 lbs'
+            ],
             experienceLevel: 'Entry Level',
             description: 'Sunrise Community Services is seeking compassionate Direct Support Professionals to assist individuals with intellectual and developmental disabilities in our residential programs. You will help with daily living activities, community outings, and skill development while promoting independence and dignity.',
             responsibilities: [
@@ -159,6 +166,16 @@ const generateJobs = (employers) => {
                 'Paid time off and sick leave',
                 'Flexible scheduling',
                 'Career advancement opportunities'
+            ],
+            perks: [
+                { title: 'Healthcare', description: 'Comprehensive health coverage', icon: 'stethoscope' },
+                { title: 'Insurance', description: 'Life and disability insurance', icon: 'umbrella' },
+                { title: 'Remote Work', description: 'Hybrid options available', icon: 'video' }
+            ],
+            officeImages: [
+                '/images/office-1.svg',
+                '/images/office-2.svg',
+                '/images/office-3.svg'
             ],
             status: 'Open',
             featured: true,
@@ -1068,8 +1085,14 @@ const destroyData = async () => {
     }
 };
 
-if (process.argv[2] === '-d') {
-    destroyData();
-} else {
-    importData();
-}
+const run = async () => {
+    await connectDB();
+
+    if (process.argv[2] === '-d') {
+        await destroyData();
+    } else {
+        await importData();
+    }
+};
+
+run();

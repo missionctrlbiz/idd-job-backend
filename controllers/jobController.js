@@ -87,4 +87,37 @@ export const getJobById = async (req, res) => {
             error: error.message
         });
     }
+}
+
+
+// @desc    Get job statistics
+// @route   GET /api/v1/jobs/stats
+// @access  Public
+export const getJobStats = async (req, res) => {
+    try {
+        const stats = await Job.aggregate([
+            {
+                $group: {
+                    _id: '$roleCategory',
+                    count: { $sum: 1 }
+                }
+            }
+        ]);
+
+        const featured = await Job.find().limit(4).sort({ postedAt: -1 });
+
+        res.status(200).json({
+            success: true,
+            data: {
+                stats,
+                featured
+            }
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Server Error',
+            error: error.message
+        });
+    }
 };

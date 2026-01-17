@@ -7,6 +7,9 @@ import connectDB from './config/db.js';
 import jobRoutes from './routes/jobRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import applicationRoutes from './routes/applicationRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import messageRoutes from './routes/messageRoutes.js';
+import settingsRoutes from './routes/settingsRoutes.js';
 
 // Load env vars
 dotenv.config();
@@ -110,6 +113,9 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api/v1/jobs', jobRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/applications', applicationRoutes);
+app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/messages', messageRoutes);
+app.use('/api/v1/settings', settingsRoutes);
 
 // Backwards-compatible mounts (some clients may call /auth or /applications without the /api/v1 prefix)
 app.use('/auth', authRoutes);
@@ -139,7 +145,10 @@ app.get('/', (req, res) => {
             health: '/health',
             jobs: '/api/v1/jobs',
             auth: '/api/v1/auth',
-            applications: '/api/v1/applications'
+            applications: '/api/v1/applications',
+            users: '/api/v1/users',
+            messages: '/api/v1/messages',
+            settings: '/api/v1/settings'
         }
     });
 });

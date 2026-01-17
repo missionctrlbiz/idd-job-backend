@@ -45,12 +45,63 @@ const userSchema = new mongoose.Schema({
     },
 
     // Job Seeker specific profile
+    // Job Seeker specific profile
     profile: {
+        // Profile Header
         headline: String,
         location: String,
-        skills: [String],
-        certifications: [String],
+        isOpenToWork: {
+            type: Boolean,
+            default: false
+        },
+        socialLinks: {
+            linkedin: String,
+            twitter: String,
+            website: String,
+            instagram: String
+        },
+
+        // Professional Data
         experienceYears: Number,
+        highestEducation: String,
+        skills: [String],
+        licenses: [{
+            name: String,
+            status: {
+                type: String,
+                enum: ['Pending', 'Verified'],
+                default: 'Pending'
+            },
+            documentUrl: String
+        }],
+
+        // Work Experience
+        workExperience: [{
+            company: String,
+            role: String,
+            type: {
+                type: String,
+                enum: ['Full-Time', 'Part-Time', 'Contract', 'Internship']
+            },
+            startDate: Date,
+            endDate: Date,
+            current: Boolean,
+            logo: String,
+            description: String
+        }],
+
+        // Education
+        education: [{
+            school: String,
+            degree: String,
+            field: String,
+            startYear: Number,
+            endYear: Number,
+            logo: String
+        }],
+
+        // Legacy/Other Fields
+        certifications: [String],
         desiredSalary: {
             min: Number,
             max: Number
@@ -64,15 +115,7 @@ const userSchema = new mongoose.Schema({
             url: String,
             filename: String,
             uploadedAt: Date
-        },
-        experience: [{
-            title: String,
-            company: String,
-            from: Date,
-            to: Date,
-            current: Boolean,
-            description: String
-        }]
+        }
     },
 
     // Employer specific

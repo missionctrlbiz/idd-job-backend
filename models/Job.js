@@ -15,19 +15,24 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please add a location']
     },
+    workMode: {
+        type: String,
+        enum: ['On-site', 'Hybrid', 'Remote'],
+        default: 'On-site'
+    },
     type: {
         type: String,
-        enum: ['Full-Time', 'Part-Time', 'Contract'],
+        enum: ['Full-Time', 'Part-Time', 'Contract', 'PRN'],
         required: true
     },
     roleCategory: {
         type: String,
-        enum: ['DSP', 'Caregiver', 'Nurse', 'Admin'],
+        enum: ['DSP', 'Caregiver', 'Nurse', 'Admin', 'Behavioral'],
         required: true
     },
     shifts: {
         type: [String],
-        enum: ['Overnight', 'Weekend', 'Live-In', 'Day', 'Evening', 'Rotating'], // Added common shifts, user example included Overnight, Weekend, Live-In
+        enum: ['Overnight', 'Weekend', 'Live-In', 'Day', 'Evening', 'Rotating', 'Flexible'], // Added common shifts, user example included Overnight, Weekend, Live-In
         default: []
     },
     certifications: {
@@ -45,7 +50,7 @@ const jobSchema = new mongoose.Schema({
         },
         period: {
             type: String,
-            enum: ['Hourly', 'Monthly', 'Yearly'],
+            enum: ['Hourly', 'Weekly', 'Monthly', 'Yearly'],
             default: 'Hourly'
         }
     },
@@ -56,6 +61,31 @@ const jobSchema = new mongoose.Schema({
     postedAt: {
         type: Date,
         default: Date.now
+    },
+    responsibilities: {
+        type: [String],
+        default: []
+    },
+    qualifications: {
+        type: [String],
+        default: []
+    },
+    requirements: {
+        type: [String],
+        default: []
+    },
+    perks: [{
+        title: String,
+        description: String,
+        icon: String
+    }],
+    benefits: {
+        type: [String],
+        default: []
+    },
+    officeImages: {
+        type: [String],
+        default: []
     }
 }, {
     timestamps: true
