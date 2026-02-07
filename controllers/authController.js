@@ -1,12 +1,7 @@
 import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 
-// Generate JWT
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET || 'secret', {
-        expiresIn: '30d',
-    });
-};
+
 
 // @desc    Register new user
 // @route   POST /api/v1/auth/register
@@ -40,7 +35,7 @@ export const register = async (req, res) => {
                 name: user.name,
                 email: user.email,
                 role: user.role,
-                token: generateToken(user._id)
+                token: user.getSignedJwtToken()
             });
         } else {
             res.status(400).json({
@@ -74,7 +69,7 @@ export const login = async (req, res) => {
                 name: user.name,
                 email: user.email,
                 role: user.role,
-                token: generateToken(user._id)
+                token: user.getSignedJwtToken()
             });
         } else {
             res.status(401).json({

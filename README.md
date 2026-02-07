@@ -1,192 +1,126 @@
-# IDD Job Platform - Backend API
+# IDD Job Connect API
 
-Backend API for the IDD (Intellectual and Developmental Disabilities) Job Platform built with Node.js, Express, and MongoDB.
+The backend API for the IDD (Intellectual and Developmental Disabilities) Job Platform. This RESTful API powers the job board, applicant tracking system (ATS), and user management features. Built with Node.js, Express, and MongoDB.
 
-## Tech Stack
+## 🚀 Features
 
-- **Runtime:** Node.js 18+
-- **Framework:** Express.js
-- **Database:** MongoDB Atlas
-- **Authentication:** JWT (JSON Web Tokens)
+-   **User Authentication**: JWT-based auth for Job Seekers, Employers, and Admins.
+-   **Job Management**: Create, read, update, and delete job postings.
+-   **Application System**: Candidates can apply with resumes; Employers can track hiring stages.
+-   **Employer Dashboard**: Analytics, applicant filtering, and team collaboration notes.
+-   **User Profiles**: specialized profiles for caregivers and healthcare professionals.
 
-## Local Development
+## 🛠️ Tech Stack
 
-### Prerequisites
+-   **Runtime**: Node.js 18+
+-   **Framework**: Express.js
+-   **Database**: MongoDB Atlas
+-   **ODM**: Mongoose
+-   **Authentication**: JSON Web Tokens (JWT) & bcrypt
+-   **Security**: Helmet, CORS, Rate Limiting (planned)
 
-- Node.js 18 or higher
-- MongoDB Atlas account (or local MongoDB)
+## 📦 Installation & Setup
 
-### Setup
+### 1. Prerequisites
 
-1. Clone the repository:
+-   [Node.js](https://nodejs.org/) (v18 or higher)
+-   [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account (or a local MongoDB instance)
+
+### 2. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
-cd idd-job-backend
+git clone https://github.com/corehealthp/idd-job-connect-api.git
+cd idd-job-connect-api
 ```
 
-2. Install dependencies:
+### 3. Install Dependencies
 
 ```bash
 npm install
 ```
 
-3. Create a `.env` file in the root directory:
+### 4. Environment Configuration
 
-```env
-NODE_ENV=development
-PORT=5000
-MONGO_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/idd-job-platform
-JWT_SECRET=your_super_secret_jwt_key_here
-JWT_EXPIRE=30d
+Create a `.env` file in the root directory. You can copy the example file:
+
+```bash
+cp .env.example .env
 ```
 
-4. Run the development server:
+**Required Variables:**
 
+| Variable       | Description                                                 | Example                                                      |
+| :------------- | :---------------------------------------------------------- | :----------------------------------------------------------- |
+| `NODE_ENV`     | Environment mode (`development` or `production`)            | `development`                                                |
+| `PORT`         | Server port                                                 | `5000`                                                       |
+| `MONGO_DB`     | MongoDB Connection String                                   | `mongodb+srv://user:pass@cluster.mongodb.net/dbname`         |
+| `JWT_SECRET`   | Secret key for signing tokens                               | `super_secret_key_change_me`                                 |
+| `JWT_EXPIRE`   | Token expiration time                                       | `30d`                                                        |
+| `CORS_ORIGINS` | Comma-separated list of allowed origins                     | `http://localhost:3000,https://iddjobplatform.vercel.app`    |
+
+### 5. Running the API
+
+**Development Mode** (with hot-reload):
 ```bash
 npm run dev
 ```
 
-5. Seed the database (optional):
+**Production Mode**:
+```bash
+npm start
+```
+
+## 🌱 Database Seeding
+
+To populate the database with initial sample data (Users, Jobs, Applications):
 
 ```bash
 npm run seed
 ```
+> **Note**: This will clear existing data in the connected database.
 
-## API Endpoints
+## 📚 API Documentation
 
-### Jobs
+### Base URL
+`http://localhost:5000/api/v1`
 
-- `GET /api/v1/jobs` - Get all jobs (with filtering, pagination)
-- `GET /api/v1/jobs/:id` - Get single job
-- `GET /api/v1/jobs/filters` - Get filter options with counts
-- `POST /api/v1/jobs` - Create job (requires auth)
-- `PUT /api/v1/jobs/:id` - Update job (requires auth)
-- `DELETE /api/v1/jobs/:id` - Delete job (requires auth)
+### Key Endpoints
 
-### Auth
+#### Authentication
+- `POST /auth/register` - Register a new user (Job Seeker or Employer)
+- `POST /auth/login` - Login and receive JWT
+- `GET /auth/me` - Get current user profile
 
-- `POST /api/v1/auth/register` - Register user
-- `POST /api/v1/auth/login` - Login user
-- `GET /api/v1/auth/me` - Get current user (requires auth)
+#### Jobs
+- `GET /jobs` - List all jobs (supports pagination & filtering)
+- `GET /jobs/:id` - Get job details
+- `POST /jobs` - Post a new job (Employer only)
 
-### Applications
+#### Employer Dashboard
+- `GET /employer/dashboard/overview` - Get high-level stats
+- `GET /employer/applicants` - List applicants across all jobs
+- `GET /employer/applicants/:id` - View specific applicant details
+- `PUT /employer/applicants/:id/stage` - Update hiring stage (e.g., Interview, Hired)
 
-- `POST /api/v1/applications` - Apply for job (requires auth)
-- `GET /api/v1/applications/me` - Get my applications (requires auth)
-- `GET /api/v1/applications/job/:jobId` - Get job applications (employer only)
+## 🚢 Deployment
 
-### Query Parameters for Jobs
+### Deploying to Render.com
 
-| Parameter      | Description                           | Example               |
-| -------------- | ------------------------------------- | --------------------- |
-| `search`       | Search in title, company, description | `?search=DSP`         |
-| `type`         | Employment type                       | `?type=Full-Time`     |
-| `roleCategory` | Role category                         | `?roleCategory=Nurse` |
-| `location`     | Location (partial match)              | `?location=Denver`    |
-| `minSalary`    | Minimum hourly rate                   | `?minSalary=18`       |
-| `maxSalary`    | Maximum hourly rate                   | `?maxSalary=25`       |
-| `shifts`       | Shift preferences (comma-separated)   | `?shifts=Day,Evening` |
-| `page`         | Page number                           | `?page=1`             |
-| `limit`        | Results per page                      | `?limit=20`           |
+1.  Connect your GitHub repo to Render.
+2.  Select **Web Service**.
+3.  Set **Build Command**: `npm install`
+4.  Set **Start Command**: `npm start`
+5.  Add all Environment Variables from your `.env` file to Render's "Environment" tab.
+6.  **Important**: Ensure your MongoDB Atlas Network Access allows connections from `0.0.0.0/0` (Anywhere) since Render IPs are dynamic.
 
----
+## 🤝 Contributing
 
-## 🚀 Deployment to Render.com
+1.  Fork the repository
+2.  Create your feature branch (`git checkout -b feature/amazing-feature`)
+3.  Commit your changes (`git commit -m 'feat: Add amazing feature'`)
+4.  Push to the branch (`git push origin feature/amazing-feature`)
+5.  Open a Pull Request
 
-### Step 1: Push to GitHub
+## 📄 License
 
-Make sure your code is pushed to a GitHub repository:
-
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/yourusername/idd-job-backend.git
-git push -u origin main
-```
-
-### Step 2: Create Render Account
-
-1. Go to [render.com](https://render.com) and sign up (free)
-2. Connect your GitHub account
-
-### Step 3: Create New Web Service
-
-1. Click **"New +"** → **"Web Service"**
-2. Connect your GitHub repository
-3. Configure the service:
-
-| Setting           | Value                        |
-| ----------------- | ---------------------------- |
-| **Name**          | `idd-job-backend`            |
-| **Region**        | Choose closest to your users |
-| **Branch**        | `main`                       |
-| **Runtime**       | `Node`                       |
-| **Build Command** | `npm install`                |
-| **Start Command** | `npm start`                  |
-| **Instance Type** | `Free`                       |
-
-### Step 4: Add Environment Variables
-
-In the Render dashboard, go to **Environment** and add:
-
-| Key                      | Value                                        | Notes                                               |
-| ------------------------ | -------------------------------------------- | --------------------------------------------------- |
-| `NODE_ENV`               | `production`                                 | Required                                            |
-| `MONGO_DB`               | `mongodb+srv://...` (your MongoDB Atlas URI) | Required (note: use `MONGO_DB`, not `MONGO_URI`)    |
-| `JWT_SECRET`             | `your_secret_key`                            | Required - generate a secure random string          |
-| `JWT_EXPIRE`             | `30d`                                        | Optional (default: 30d)                             |
-| `CORS_ORIGINS`           | `https://iddjobplatform.vercel.app`          | Optional - defaults to Vercel URLs                  |
-| `ALLOW_LOCALHOST_ORIGIN` | `true`                                       | Optional - set to `true` for local frontend testing |
-| `ALLOW_ALL_ORIGINS`      | `false`                                      | ⚠️ Emergency debugging only - keep `false`          |
-
-**CORS Configuration Notes:**
-
-- **Production (frontend deployed):** Set `CORS_ORIGINS` to your Vercel URL(s). Example: `https://iddjobplatform.vercel.app`
-- **Testing with local frontend:** Set `ALLOW_LOCALHOST_ORIGIN=true` to allow requests from `http://localhost:3000` while backend is on Render
-- **Never enable `ALLOW_ALL_ORIGINS` in production** - this disables CORS security entirely
-
-### Step 5: Deploy
-
-Click **"Create Web Service"** and wait for deployment (2-3 minutes).
-
-Your API will be available at: `https://idd-job-backend.onrender.com`
-
-### Step 6: Update Frontend
-
-Update your frontend's API base URL to point to your Render deployment:
-
-```javascript
-const API_URL = "https://idd-job-backend.onrender.com/api/v1";
-```
-
----
-
-## MongoDB Atlas IP Whitelist
-
-For Render deployment, you need to whitelist all IPs in MongoDB Atlas:
-
-1. Go to MongoDB Atlas → Network Access
-2. Click **"Add IP Address"**
-3. Click **"Allow Access from Anywhere"** (adds `0.0.0.0/0`)
-4. Click **"Confirm"**
-
-⚠️ This is required because Render uses dynamic IPs.
-
----
-
-## Alternative Hosting Platforms
-
-| Platform    | Free Tier     | URL                                |
-| ----------- | ------------- | ---------------------------------- |
-| **Render**  | ✅ 750 hrs/mo | [render.com](https://render.com)   |
-| **Railway** | $5 credit/mo  | [railway.app](https://railway.app) |
-| **Fly.io**  | ✅ 3 VMs free | [fly.io](https://fly.io)           |
-| **Cyclic**  | ✅ Free       | [cyclic.sh](https://cyclic.sh)     |
-
----
-
-## License
-
-ISC
+This project is licensed under the ISC License.
