@@ -104,14 +104,23 @@ npm run seed
 
 ## 🚢 Deployment
 
-### Deploying to Render.com
+This application follows the **12-Factor App** methodology and can be deployed to any cloud provider (AWS, Render, Heroku, etc.) that supports Node.js.
 
-1.  Connect your GitHub repo to Render.
-2.  Select **Web Service**.
-3.  Set **Build Command**: `npm install`
-4.  Set **Start Command**: `npm start`
-5.  Add all Environment Variables from your `.env` file to Render's "Environment" tab.
-6.  **Important**: Ensure your MongoDB Atlas Network Access allows connections from `0.0.0.0/0` (Anywhere) since Render IPs are dynamic.
+### Production Environment
+Ensure the following environment variables are set in your production environment (e.g., AWS Elastic Beanstalk, EC2, or Render):
+
+- `NODE_ENV`: Set to `production`
+- `MONGO_DB`: Production MongoDB connection string
+- `JWT_SECRET`: Secure, random string
+- `CORS_ORIGINS`: Comma-separated list of allowed frontend domains (e.g., specific AWS CloudFront URLs or Vercel domains)
+
+### CI/CD
+The repository is configured for continuous deployment. Pushes to the `main` branch trigger the deployment pipeline defined in your CI/CD configuration (e.g., GitHub Actions).
+
+### Frontend Integration
+The backend is CORS-enabled and can be consumed by any frontend that is whitelisted in `CORS_ORIGINS`.
+- **Local Development**: `http://localhost:3000`
+- **Production**: Your deployed frontend URL
 
 ## 🤝 Contributing
 
