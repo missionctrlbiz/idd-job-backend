@@ -10,6 +10,7 @@ import applicationRoutes from './routes/applicationRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import settingsRoutes from './routes/settingsRoutes.js';
+import employerRoutes from './routes/employerRoutes.js';
 
 // Load env vars
 dotenv.config();
@@ -116,6 +117,7 @@ app.use('/api/v1/applications', applicationRoutes);
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/messages', messageRoutes);
 app.use('/api/v1/settings', settingsRoutes);
+app.use('/api/v1/employer', employerRoutes);
 
 // Backwards-compatible mounts (some clients may call /auth or /applications without the /api/v1 prefix)
 app.use('/auth', authRoutes);
@@ -148,7 +150,8 @@ app.get('/', (req, res) => {
             applications: '/api/v1/applications',
             users: '/api/v1/users',
             messages: '/api/v1/messages',
-            settings: '/api/v1/settings'
+            settings: '/api/v1/settings',
+            employer: '/api/v1/employer'
         }
     });
 });

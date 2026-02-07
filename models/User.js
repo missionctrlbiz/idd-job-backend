@@ -43,8 +43,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         maxlength: [500, 'Bio cannot exceed 500 characters']
     },
+    gender: {
+        type: String,
+        enum: ['Male', 'Female', 'Other', 'Prefer not to say']
+    },
+    dateOfBirth: Date,
+    languages: [String],
 
-    // Job Seeker specific profile
     // Job Seeker specific profile
     profile: {
         // Profile Header
@@ -54,12 +59,27 @@ const userSchema = new mongoose.Schema({
             type: Boolean,
             default: false
         },
+        address: {
+            street: String,
+            city: String,
+            state: String,
+            zip: String,
+            country: String
+        },
         socialLinks: {
             linkedin: String,
             twitter: String,
             website: String,
             instagram: String
         },
+
+        // About/Bio
+        aboutMe: {
+            type: String,
+            maxlength: [2000, 'About me cannot exceed 2000 characters']
+        },
+        currentJob: String,
+        qualificationLevel: String,
 
         // Professional Data
         experienceYears: Number,

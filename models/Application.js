@@ -37,11 +37,35 @@ const applicationSchema = new mongoose.Schema({
         default: 'Pending'
     },
 
-    // Employer notes (private)
+    // Employer rating/scoring
+    score: {
+        type: Number,
+        min: 0,
+        max: 5,
+        default: 0
+    },
+
+    // Hiring stage (for UI stepper/progress)
+    hiringStage: {
+        type: String,
+        enum: ['In-Review', 'Shortlisted', 'Interview', 'Hired', 'Declined'],
+        default: 'In-Review'
+    },
+
+    // Employer notes (private) - enhanced with author snapshot
     notes: [{
         text: String,
         addedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        authorName: String, // Snapshot for faster rendering
+        authorAvatar: String, // Snapshot for faster rendering
         addedAt: { type: Date, default: Date.now }
+    }],
+
+    // Assigned team members (for interview coordination)
+    assignedTo: [{
+        user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        name: String, // Snapshot
+        avatar: String // Snapshot
     }],
 
     // Interview scheduling
@@ -49,7 +73,12 @@ const applicationSchema = new mongoose.Schema({
         scheduledAt: Date,
         type: { type: String, enum: ['Phone', 'Video', 'In-Person'] },
         location: String,
-        notes: String
+        notes: String,
+        status: {
+            type: String,
+            enum: ['Scheduled', 'On Progress', 'Completed', 'Cancelled'],
+            default: 'Scheduled'
+        }
     },
 
     appliedAt: {

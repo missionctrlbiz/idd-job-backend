@@ -11,6 +11,11 @@ const jobSchema = new mongoose.Schema({
         required: [true, 'Please add a company name'],
         trim: true
     },
+    employerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     location: {
         type: String,
         required: [true, 'Please add a location']
@@ -83,6 +88,21 @@ const jobSchema = new mongoose.Schema({
         type: [String],
         default: []
     },
+
+    // Analytics and tracking
+    viewsCount: {
+        type: Number,
+        default: 0
+    },
+    viewsByDay: [{
+        date: Date,
+        count: Number
+    }],
+    applicationsCount: {
+        type: Number,
+        default: 0
+    },
+
     officeImages: {
         type: [String],
         default: []
