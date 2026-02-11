@@ -2,7 +2,12 @@
 
 The backend API for the IDD (Intellectual and Developmental Disabilities) Job Platform. This RESTful API powers the job board, applicant tracking system (ATS), and user management features. Built with Node.js, Express, and MongoDB.
 
+## 🚀 Live Deployment
+- **Backend Base URL:** `https://idd-job-backend.onrender.com`
+- **Frontend Guide:** Please refer to [FRONTEND_GUIDE.md](./FRONTEND_GUIDE.md) for detailed integration instructions.
+
 ## 🚀 Features
+
 
 -   **User Authentication**: JWT-based auth for Job Seekers, Employers, and Admins.
 -   **Job Management**: Create, read, update, and delete job postings.
@@ -82,7 +87,9 @@ npm run seed
 ## 📚 API Documentation
 
 ### Base URL
-`http://localhost:5000/api/v1`
+- **Production:** `https://idd-job-backend.onrender.com/api/v1`
+- **Local:** `http://localhost:5000/api/v1`
+
 
 ### Key Endpoints
 
