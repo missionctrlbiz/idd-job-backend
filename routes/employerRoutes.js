@@ -11,7 +11,9 @@ import {
     addApplicantNote,
     updateInterview,
     assignTeamMembers,
-    getEmployerJobs
+    getEmployerJobs,
+    scheduleInterview,
+    addInterviewFeedback
 } from '../controllers/employerController.js';
 import { protect } from '../middleware/authMiddleware.js';
 
@@ -35,7 +37,12 @@ router.get('/applicants/:id', getApplicantDetails);
 router.put('/applicants/:id/score', updateApplicantScore);
 router.put('/applicants/:id/stage', updateHiringStage);
 router.post('/applicants/:id/notes', addApplicantNote);
-router.put('/applicants/:id/interview', updateInterview);
+
+// Interview routes (updated & new)
+router.put('/applicants/:id/interview/:interviewId', updateInterview); // Update specific interview
+router.post('/applicants/:id/interviews', scheduleInterview); // Schedule new interview
+router.post('/applicants/:id/interviews/:interviewId/feedback', addInterviewFeedback); // Add feedback
+
 router.put('/applicants/:id/assign', assignTeamMembers);
 
 export default router;

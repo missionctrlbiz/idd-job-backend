@@ -52,34 +52,49 @@ const applicationSchema = new mongoose.Schema({
         default: 'In-Review'
     },
 
-    // Employer notes (private) - enhanced with author snapshot
+    // Employer notes (private) - enhanced with threading
     notes: [{
         text: String,
         addedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-        authorName: String, // Snapshot for faster rendering
-        authorAvatar: String, // Snapshot for faster rendering
-        addedAt: { type: Date, default: Date.now }
+        authorName: String,
+        authorAvatar: String,
+        addedAt: { type: Date, default: Date.now },
+        replies: [{
+            text: String,
+            addedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+            authorName: String,
+            authorAvatar: String,
+            addedAt: { type: Date, default: Date.now }
+        }]
     }],
 
     // Assigned team members (for interview coordination)
     assignedTo: [{
         user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-        name: String, // Snapshot
-        avatar: String // Snapshot
+        name: String,
+        avatar: String
     }],
 
-    // Interview scheduling
-    interview: {
+    // Interview scheduling (Multiple rounds)
+    interviews: [{
         scheduledAt: Date,
-        type: { type: String, enum: ['Phone', 'Video', 'In-Person'] },
-        location: String,
-        notes: String,
+        duration: { type: Number, default: 60 }, // in minutes
+        type: { type: String, enum: ['Phone', 'Video', 'In-Person', 'Written Test', 'Skill Test'] },
+        location: String, // URL or Physical address
+        notes: String, // Instructions/Agenda
         status: {
             type: String,
-            enum: ['Scheduled', 'On Progress', 'Completed', 'Cancelled'],
+            enum: ['Scheduled', 'Completed', 'Cancelled', 'Rescheduled'],
             default: 'Scheduled'
-        }
-    },
+        },
+        interviewers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Who is interviewing
+        feedback: [{
+            rating: { type: Number, min: 1, max: 5 },
+            comment: String,
+            submittedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+            submittedAt: { type: Date, default: Date.now }
+        }]
+    }],
 
     appliedAt: {
         type: Date,

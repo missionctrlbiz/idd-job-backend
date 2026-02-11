@@ -1,0 +1,151 @@
+2026-02-09 08:12:55 [INFO]: Server running in development mode on port 5000
+2026-02-09 08:40:34 [INFO]: Server running in development mode on port 5000
+2026-02-09 08:47:48 [INFO]: Server running in development mode on port 5000
+2026-02-09 08:48:12 [INFO]: Server running in development mode on port 5000
+2026-02-09 08:48:31 [INFO]: Server running in development mode on port 5000
+2026-02-09 08:50:58 [INFO]: Server running in development mode on port 5000
+2026-02-09 08:52:03 [INFO]: Server running in development mode on port 5000
+2026-02-09 09:01:04 [INFO]: Server running in development mode on port 5000
+2026-02-09 09:01:38 [INFO]: Server running in development mode on port 5000
+2026-02-09 09:02:03 [INFO]: [0mGET /health [32m200[0m 19.069 ms - 158[0m
+2026-02-09 09:04:03 [INFO]: Server running in development mode on port 5000
+2026-02-09 09:05:05 [INFO]: Server running in development mode on port 5000
+2026-02-09 09:05:19 [INFO]: Server running in development mode on port 5000
+2026-02-09 09:06:08 [INFO]: Server running in development mode on port 5000
+2026-02-09 09:07:05 [INFO]: Server running in development mode on port 5000
+2026-02-09 09:07:35 [INFO]: Server running in development mode on port 5000
+2026-02-09 09:07:40 [INFO]: [0mPOST /api/v1/auth/login [32m200[0m 779.948 ms - 311[0m
+2026-02-09 09:07:44 [INFO]: [0mGET /api/v1/applications/me [36m304[0m 579.435 ms - -[0m
+2026-02-09 09:07:45 [INFO]: [0mGET /api/v1/applications/me [36m304[0m 594.507 ms - -[0m
+2026-02-09 09:07:45 [INFO]: [0mGET /api/v1/applications/me [36m304[0m 402.727 ms - -[0m
+2026-02-09 09:07:46 [INFO]: [0mGET /api/v1/applications/me [36m304[0m 436.715 ms - -[0m
+2026-02-09 09:07:48 [INFO]: [0mGET /api/v1/applications/me [36m304[0m 624.297 ms - -[0m
+2026-02-09 09:07:48 [INFO]: [0mGET /api/v1/applications/me [36m304[0m 445.906 ms - -[0m
+2026-02-09 09:07:49 [INFO]: [0mGET /api/v1/applications/me [36m304[0m 602.465 ms - -[0m
+2026-02-09 09:07:49 [INFO]: [0mGET /api/v1/applications/me [36m304[0m 545.552 ms - -[0m
+2026-02-09 09:08:01 [INFO]: [0mGET /api/v1/jobs [36m304[0m 544.960 ms - -[0m
+2026-02-09 09:08:01 [INFO]: [0mGET /api/v1/jobs [36m304[0m 299.623 ms - -[0m
+2026-02-09 09:08:01 [INFO]: [0mGET /api/v1/jobs [36m304[0m 270.671 ms - -[0m
+2026-02-09 09:08:02 [INFO]: [0mGET /api/v1/jobs [36m304[0m 285.328 ms - -[0m
+2026-02-09 09:08:56 [INFO]: [0mPOST /api/v1/applications [31m500[0m 1487.395 ms - 171[0m
+2026-02-09 09:09:04 [INFO]: Server running in development mode on port 5000
+2026-02-09 10:44:46 [INFO]: Server running in development mode on port 5000
+2026-02-09 10:52:17 [INFO]: Server running in development mode on port 5000
+2026-02-09 10:57:40 [INFO]: [0mGET /api/v1/jobs/stats [32m200[0m 1055.434 ms - 6860[0m
+2026-02-09 10:57:41 [INFO]: [0mGET /api/v1/jobs/stats [36m304[0m 1005.173 ms - -[0m
+2026-02-09 10:58:17 [INFO]: [0mGET /api/v1/jobs/stats [32m200[0m 398.135 ms - 6860[0m
+2026-02-09 10:58:17 [INFO]: [0mGET /api/v1/jobs/stats [36m304[0m 426.485 ms - -[0m
+2026-02-09 10:58:36 [INFO]: [0mPOST /api/v1/auth/login [32m200[0m 694.443 ms - 298[0m
+2026-02-09 10:58:49 [INFO]: [0mGET /api/v1/employer/dashboard/overview [32m200[0m 792.399 ms - 100[0m
+2026-02-09 10:58:49 [INFO]: [0mGET /api/v1/employer/dashboard/job-stats?period=week [32m200[0m 828.721 ms - 489[0m
+2026-02-09 10:58:49 [INFO]: [0mGET /api/v1/employer/dashboard/applicant-summary [32m200[0m 861.382 ms - 124[0m
+2026-02-09 10:58:50 [INFO]: [0mGET /api/v1/employer/dashboard/overview [36m304[0m 579.733 ms - -[0m
+2026-02-09 10:58:50 [INFO]: [0mGET /api/v1/employer/dashboard/job-stats?period=week [32m200[0m 659.410 ms - 489[0m
+2026-02-09 10:58:50 [INFO]: [0mGET /api/v1/employer/dashboard/applicant-summary [36m304[0m 626.032 ms - -[0m
+2026-02-09 10:58:51 [INFO]: [0mGET /api/v1/employer/dashboard/overview [36m304[0m 625.632 ms - -[0m
+2026-02-09 10:58:51 [INFO]: [0mGET /api/v1/employer/dashboard/jobs-open [32m200[0m 2165.003 ms - 36[0m
+2026-02-09 10:58:51 [INFO]: [0mGET /api/v1/employer/dashboard/applicant-summary [36m304[0m 642.899 ms - -[0m
+2026-02-09 10:58:51 [INFO]: [0mGET /api/v1/employer/dashboard/job-stats?period=week [32m200[0m 660.408 ms - 489[0m
+2026-02-09 10:58:51 [INFO]: [0mGET /api/v1/employer/dashboard/jobs-open [36m304[0m 390.402 ms - -[0m
+2026-02-09 10:58:51 [INFO]: [0mGET /api/v1/employer/dashboard/overview [36m304[0m 585.793 ms - -[0m
+2026-02-09 10:58:52 [INFO]: [0mGET /api/v1/employer/dashboard/applicant-summary [36m304[0m 610.394 ms - -[0m
+2026-02-09 10:58:52 [INFO]: [0mGET /api/v1/employer/dashboard/job-stats?period=week [32m200[0m 636.462 ms - 489[0m
+2026-02-09 10:58:52 [INFO]: [0mGET /api/v1/employer/dashboard/jobs-open [36m304[0m 388.793 ms - -[0m
+2026-02-09 10:58:52 [INFO]: [0mGET /api/v1/employer/dashboard/jobs-open [36m304[0m 513.020 ms - -[0m
+2026-02-09 10:59:33 [INFO]: [0mGET /api/v1/employer/dashboard/jobs-open [36m304[0m 448.340 ms - -[0m
+2026-02-09 10:59:33 [INFO]: [0mGET /api/v1/employer/dashboard/overview [36m304[0m 896.026 ms - -[0m
+2026-02-09 10:59:33 [INFO]: [0mGET /api/v1/employer/dashboard/job-stats?period=week [32m200[0m 890.702 ms - 489[0m
+2026-02-09 10:59:33 [INFO]: [0mGET /api/v1/employer/dashboard/jobs-open [36m304[0m 419.301 ms - -[0m
+2026-02-09 10:59:33 [INFO]: [0mGET /api/v1/employer/dashboard/applicant-summary [36m304[0m 877.922 ms - -[0m
+2026-02-09 10:59:34 [INFO]: [0mGET /api/v1/employer/dashboard/overview [36m304[0m 710.673 ms - -[0m
+2026-02-09 10:59:34 [INFO]: [0mGET /api/v1/employer/dashboard/job-stats?period=week [32m200[0m 758.074 ms - 489[0m
+2026-02-09 10:59:34 [INFO]: [0mGET /api/v1/employer/dashboard/applicant-summary [36m304[0m 729.302 ms - -[0m
+2026-02-09 10:59:36 [INFO]: [0mGET /api/v1/jobs/stats [36m304[0m 386.900 ms - -[0m
+2026-02-09 10:59:39 [INFO]: [0mGET /api/v1/employer/jobs [32m200[0m 791.764 ms - 16972[0m
+2026-02-09 10:59:40 [INFO]: [0mGET /api/v1/employer/jobs [36m304[0m 626.484 ms - -[0m
+2026-02-09 10:59:41 [INFO]: [0mGET /api/v1/employer/jobs [36m304[0m 625.738 ms - -[0m
+2026-02-09 10:59:41 [INFO]: [0mGET /api/v1/employer/jobs [36m304[0m 620.838 ms - -[0m
+2026-02-09 11:00:34 [INFO]: [0mPOST /api/v1/jobs [32m201[0m 496.282 ms - 647[0m
+2026-02-09 11:00:35 [INFO]: [0mGET /api/v1/employer/jobs [32m200[0m 747.997 ms - 15904[0m
+2026-02-09 11:00:36 [INFO]: [0mGET /api/v1/employer/jobs [36m304[0m 596.442 ms - -[0m
+2026-02-09 11:00:36 [INFO]: [0mGET /api/v1/employer/jobs [36m304[0m 619.766 ms - -[0m
+2026-02-09 11:00:37 [INFO]: [0mGET /api/v1/employer/jobs [36m304[0m 585.822 ms - -[0m
+2026-02-09 11:01:10 [INFO]: [0mPOST /api/v1/auth/login [32m200[0m 428.848 ms - 311[0m
+2026-02-09 11:01:15 [INFO]: [0mGET /api/v1/applications/me [32m200[0m 375.290 ms - 36[0m
+2026-02-09 11:01:15 [INFO]: [0mGET /api/v1/applications/me [36m304[0m 400.994 ms - -[0m
+2026-02-09 11:01:16 [INFO]: [0mGET /api/v1/applications/me [36m304[0m 383.773 ms - -[0m
+2026-02-09 11:01:16 [INFO]: [0mGET /api/v1/applications/me [36m304[0m 366.287 ms - -[0m
+2026-02-09 11:01:29 [INFO]: [0mGET /api/v1/jobs [32m200[0m 413.571 ms - 25963[0m
+2026-02-09 11:01:29 [INFO]: [0mGET /api/v1/jobs [36m304[0m 232.346 ms - -[0m
+2026-02-09 11:01:30 [INFO]: [0mGET /api/v1/jobs [36m304[0m 239.973 ms - -[0m
+2026-02-09 11:01:30 [INFO]: [0mGET /api/v1/jobs [36m304[0m 214.611 ms - -[0m
+2026-02-09 11:01:38 [INFO]: [0mGET /api/v1/jobs?search=Anim+impedit+repreh [32m200[0m 395.932 ms - 25963[0m
+2026-02-09 11:01:38 [INFO]: [0mGET /api/v1/jobs?search=Anim+impedit+repreh [36m304[0m 213.199 ms - -[0m
+2026-02-09 11:01:44 [INFO]: [0mGET /api/v1/jobs?search=Dolores+exercitation&location=Denver%2C+CO [32m200[0m 186.557 ms - 36[0m
+2026-02-09 11:01:44 [INFO]: [0mGET /api/v1/jobs?search=Dolores+exercitation [32m200[0m 403.529 ms - 25963[0m
+2026-02-09 11:02:10 [INFO]: [0mPOST /api/v1/applications [31m500[0m 1179.783 ms - 171[0m
+2026-02-09 11:02:31 [INFO]: [0mGET /api/v1/jobs [36m304[0m 423.207 ms - -[0m
+2026-02-09 11:03:17 [INFO]: Server running in development mode on port 5000
+2026-02-09 11:03:26 [INFO]: [0mGET /api/v1/jobs [36m304[0m 858.944 ms - -[0m
+2026-02-09 11:03:27 [INFO]: [0mGET /api/v1/jobs [36m304[0m 966.573 ms - -[0m
+2026-02-09 11:03:28 [INFO]: [0mGET /api/v1/jobs [36m304[0m 521.245 ms - -[0m
+2026-02-09 11:03:28 [INFO]: [0mGET /api/v1/jobs [36m304[0m 255.790 ms - -[0m
+2026-02-09 11:04:03 [INFO]: Server running in development mode on port 5000
+2026-02-09 11:11:08 [ERROR]: Apply Error: Application validation failed: resume.url: Cast to string failed for value "{}" (type Object) at path "resume.url"
+ValidationError: Application validation failed: resume.url: Cast to string failed for value "{}" (type Object) at path "resume.url"
+    at Document.invalidate (C:\dev\idd-job-backend\node_modules\mongoose\lib\document.js:3373:32)
+    at model.$set (C:\dev\idd-job-backend\node_modules\mongoose\lib\document.js:1490:12)
+    at model.$set (C:\dev\idd-job-backend\node_modules\mongoose\lib\document.js:1237:14)
+    at model.$set (C:\dev\idd-job-backend\node_modules\mongoose\lib\document.js:1127:14)
+    at model.Document (C:\dev\idd-job-backend\node_modules\mongoose\lib\document.js:178:12)
+    at model.Model (C:\dev\idd-job-backend\node_modules\mongoose\lib\model.js:127:12)
+    at new model (C:\dev\idd-job-backend\node_modules\mongoose\lib\model.js:4865:15)
+    at C:\dev\idd-job-backend\node_modules\mongoose\lib\model.js:2791:20
+    at Array.map (<anonymous>)
+    at Function.create (C:\dev\idd-job-backend\node_modules\mongoose\lib\model.js:2779:34)
+2026-02-09 11:11:08 [INFO]: [0mPOST /api/v1/applications [31m500[0m 1395.200 ms - 171[0m
+2026-02-09 11:11:19 [INFO]: [0mPOST /api/v1/auth/login [32m200[0m 472.782 ms - 298[0m
+2026-02-09 11:11:27 [INFO]: [0mGET /api/v1/employer/dashboard/overview [32m200[0m 1309.592 ms - 100[0m
+2026-02-09 11:11:27 [INFO]: [0mGET /api/v1/employer/dashboard/applicant-summary [36m304[0m 1316.663 ms - -[0m
+2026-02-09 11:11:28 [INFO]: [0mGET /api/v1/employer/dashboard/job-stats?period=week [32m200[0m 1442.938 ms - 489[0m
+2026-02-09 11:11:28 [INFO]: [0mGET /api/v1/employer/dashboard/overview [36m304[0m 935.212 ms - -[0m
+2026-02-09 11:11:29 [INFO]: [0mGET /api/v1/employer/dashboard/job-stats?period=week [32m200[0m 1018.130 ms - 489[0m
+2026-02-09 11:11:29 [INFO]: [0mGET /api/v1/employer/dashboard/jobs-open [32m200[0m 2680.824 ms - 36[0m
+2026-02-09 11:11:29 [INFO]: [0mGET /api/v1/employer/dashboard/applicant-summary [36m304[0m 1345.976 ms - -[0m
+2026-02-09 11:11:29 [INFO]: [0mGET /api/v1/employer/dashboard/overview [36m304[0m 623.204 ms - -[0m
+2026-02-09 11:11:29 [INFO]: [0mGET /api/v1/employer/dashboard/jobs-open [36m304[0m 372.174 ms - -[0m
+2026-02-09 11:11:29 [INFO]: [0mGET /api/v1/employer/dashboard/job-stats?period=week [32m200[0m 666.560 ms - 489[0m
+2026-02-09 11:11:30 [INFO]: [0mGET /api/v1/employer/dashboard/jobs-open [36m304[0m 380.406 ms - -[0m
+2026-02-09 11:11:30 [INFO]: [0mGET /api/v1/employer/dashboard/overview [36m304[0m 589.177 ms - -[0m
+2026-02-09 11:11:30 [INFO]: [0mGET /api/v1/employer/dashboard/applicant-summary [36m304[0m 774.707 ms - -[0m
+2026-02-09 11:11:30 [INFO]: [0mGET /api/v1/employer/dashboard/job-stats?period=week [32m200[0m 578.225 ms - 489[0m
+2026-02-09 11:11:30 [INFO]: [0mGET /api/v1/employer/dashboard/jobs-open [36m304[0m 366.985 ms - -[0m
+2026-02-09 11:11:31 [INFO]: [0mGET /api/v1/employer/dashboard/applicant-summary [36m304[0m 923.464 ms - -[0m
+2026-02-09 11:11:42 [INFO]: [0mGET /api/v1/employer/jobs [36m304[0m 779.154 ms - -[0m
+2026-02-09 11:11:42 [INFO]: [0mGET /api/v1/employer/jobs [36m304[0m 559.537 ms - -[0m
+2026-02-09 11:11:43 [INFO]: [0mGET /api/v1/employer/jobs [36m304[0m 581.831 ms - -[0m
+2026-02-09 11:11:43 [INFO]: [0mGET /api/v1/employer/jobs [36m304[0m 587.235 ms - -[0m
+2026-02-09 11:12:01 [INFO]: [0mGET /api/v1/employer/jobs [36m304[0m 768.031 ms - -[0m
+2026-02-09 11:12:02 [INFO]: [0mGET /api/v1/employer/jobs [36m304[0m 597.998 ms - -[0m
+2026-02-09 11:12:02 [INFO]: [0mGET /api/v1/employer/jobs [36m304[0m 909.284 ms - -[0m
+2026-02-09 11:12:03 [INFO]: [0mGET /api/v1/employer/jobs [36m304[0m 640.847 ms - -[0m
+2026-02-09 11:12:09 [INFO]: [0mGET /api/v1/employer/applicants?page=1&limit=10&search=&hiringStage= [32m200[0m 989.450 ms - 65[0m
+2026-02-09 11:12:10 [INFO]: [0mGET /api/v1/employer/applicants?page=1&limit=10&search=&hiringStage= [36m304[0m 824.783 ms - -[0m
+2026-02-09 11:12:11 [INFO]: [0mGET /api/v1/employer/applicants?page=1&limit=10&search=&hiringStage= [36m304[0m 853.437 ms - -[0m
+2026-02-09 11:12:12 [INFO]: [0mGET /api/v1/employer/applicants?page=1&limit=10&search=&hiringStage= [36m304[0m 796.608 ms - -[0m
+2026-02-09 11:12:13 [INFO]: [0mGET /api/v1/employer/dashboard/jobs-open [36m304[0m 462.423 ms - -[0m
+2026-02-09 11:12:13 [INFO]: [0mGET /api/v1/employer/dashboard/overview [36m304[0m 688.335 ms - -[0m
+2026-02-09 11:12:13 [INFO]: [0mGET /api/v1/employer/dashboard/job-stats?period=week [32m200[0m 860.349 ms - 489[0m
+2026-02-09 11:12:13 [INFO]: [0mGET /api/v1/employer/dashboard/jobs-open [36m304[0m 385.831 ms - -[0m
+2026-02-09 11:12:13 [INFO]: [0mGET /api/v1/employer/dashboard/applicant-summary [36m304[0m 876.870 ms - -[0m
+2026-02-09 11:12:14 [INFO]: [0mGET /api/v1/employer/dashboard/jobs-open [36m304[0m 374.170 ms - -[0m
+2026-02-09 11:12:14 [INFO]: [0mGET /api/v1/employer/dashboard/overview [36m304[0m 583.652 ms - -[0m
+2026-02-09 11:12:14 [INFO]: [0mGET /api/v1/employer/dashboard/applicant-summary [36m304[0m 588.253 ms - -[0m
+2026-02-09 11:12:14 [INFO]: [0mGET /api/v1/employer/dashboard/job-stats?period=week [32m200[0m 759.882 ms - 489[0m
+2026-02-09 11:12:14 [INFO]: [0mGET /api/v1/employer/dashboard/jobs-open [36m304[0m 399.106 ms - -[0m
+2026-02-09 11:12:14 [INFO]: [0mGET /api/v1/employer/dashboard/overview [36m304[0m 620.408 ms - -[0m
+2026-02-09 11:12:14 [INFO]: [0mGET /api/v1/employer/dashboard/applicant-summary [36m304[0m 592.953 ms - -[0m
+2026-02-09 11:12:15 [INFO]: [0mGET /api/v1/employer/dashboard/overview [36m304[0m 580.926 ms - -[0m
+2026-02-09 11:12:15 [INFO]: [0mGET /api/v1/employer/dashboard/job-stats?period=week [32m200[0m 881.218 ms - 489[0m
+2026-02-09 11:12:15 [INFO]: [0mGET /api/v1/employer/dashboard/applicant-summary [36m304[0m 598.584 ms - -[0m
+2026-02-09 11:12:15 [INFO]: [0mGET /api/v1/employer/dashboard/job-stats?period=week [32m200[0m 582.543 ms - 489[0m

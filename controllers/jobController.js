@@ -31,9 +31,12 @@ export const getAllJobs = async (req, res) => {
 
 // @desc    Create a new job
 // @route   POST /api/v1/jobs
-// @access  Public (for now)
+// @access  Private (Employer)
 export const createJob = async (req, res) => {
     try {
+        // Add user to req.body
+        req.body.employerId = req.user.id;
+
         const job = await Job.create(req.body);
 
         res.status(201).json({
@@ -48,6 +51,27 @@ export const createJob = async (req, res) => {
                 message: messages.join(', ')
             });
         }
+        res.status(500).json({
+            success: false,
+            message: 'Server Error',
+            error: error.message
+        });
+    }
+};
+
+// @desc    Get jobs posted by current employer
+// @route   GET /api/v1/jobs/my-jobs
+// @access  Private (Employer)
+export const getMyJobs = async (req, res) => {
+    try {
+        const jobs = await Job.find({ employerId: req.user.id }).sort({ postedAt: -1 });
+
+        res.status(200).json({
+            success: true,
+            count: jobs.length,
+            data: jobs
+        });
+    } catch (error) {
         res.status(500).json({
             success: false,
             message: 'Server Error',

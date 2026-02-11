@@ -11,6 +11,7 @@ import userRoutes from './routes/userRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import settingsRoutes from './routes/settingsRoutes.js';
 import employerRoutes from './routes/employerRoutes.js';
+import logger from './utils/logger.js';
 
 // Load env vars
 dotenv.config();
@@ -22,6 +23,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use('/uploads', express.static('uploads'));
 
 // ============================================================================
 // CORS Configuration (Production-Ready)
@@ -106,9 +108,10 @@ console.log('   Credentials: enabled');
 // ============================================================================
 
 app.use(helmet());
-if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'));
-}
+
+// Log HTTP requests
+const morganFormat = process.env.NODE_ENV === 'production' ? 'combined' : 'dev';
+app.use(morgan(morganFormat, { stream: logger.stream }));
 
 // Mount routers (v1)
 app.use('/api/v1/jobs', jobRoutes);
@@ -156,8 +159,18 @@ app.get('/', (req, res) => {
     });
 });
 
+// Error Handler Middleware
+app.use((err, req, res, next) => {
+    logger.error(`${err.message}`, { stack: err.stack, url: req.originalUrl, method: req.method });
+    res.status(500).json({
+        success: false,
+        message: 'Internal Server Error',
+        error: process.env.NODE_ENV === 'development' ? err.message : undefined
+    });
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+    logger.info(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });

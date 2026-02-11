@@ -270,6 +270,9 @@ export const getApplicantDetails = async (req, res) => {
             })
             .populate('job')
             .populate('notes.addedBy', 'name avatar')
+            .populate('notes.replies.addedBy', 'name avatar')
+            .populate('interviews.interviewers', 'name avatar')
+            .populate('interviews.feedback.submittedBy', 'name avatar')
             .populate('assignedTo.user', 'name avatar');
 
         if (!application) {
@@ -379,34 +382,33 @@ export const updateHiringStage = async (req, res) => {
 // @access  Private (Employer)
 export const addApplicantNote = async (req, res) => {
     try {
-        const { text } = req.body;
+        const { text, replyToNoteId } = req.body;
 
         if (!text) {
-            return res.status(400).json({
-                success: false,
-                message: 'Note text is required'
-            });
+            return res.status(400).json({ success: false, message: 'Note text is required' });
         }
 
         const application = await Application.findById(req.params.id);
 
         if (!application) {
-            return res.status(404).json({
-                success: false,
-                message: 'Application not found'
-            });
+            return res.status(404).json({ success: false, message: 'Application not found' });
         }
 
-        // Add note with author snapshot
-        const note = {
-            text,
+        const userSnapshot = {
             addedBy: req.user.id,
             authorName: req.user.name,
             authorAvatar: req.user.avatar,
             addedAt: new Date()
         };
 
-        application.notes.push(note);
+        if (replyToNoteId) {
+            const note = application.notes.id(replyToNoteId);
+            if (!note) return res.status(404).json({ success: false, message: 'Parent note not found' });
+            note.replies.push({ text, ...userSnapshot });
+        } else {
+            application.notes.push({ text, ...userSnapshot, replies: [] });
+        }
+
         await application.save();
 
         res.status(201).json({
@@ -414,51 +416,122 @@ export const addApplicantNote = async (req, res) => {
             data: application
         });
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: 'Server Error',
-            error: error.message
-        });
+        res.status(500).json({ success: false, message: 'Server Error', error: error.message });
     }
 };
 
-// @desc    Update interview details
-// @route   PUT /api/v1/employer/applicants/:id/interview
+// @desc    Update interview details (Specific Interview)
+// @route   PUT /api/v1/employer/applicants/:id/interview/:interviewId
 // @access  Private (Employer)
 export const updateInterview = async (req, res) => {
     try {
         const { scheduledAt, type, location, notes, status } = req.body;
+        const { id, interviewId } = req.params;
 
-        const updateData = { interview: {} };
-        if (scheduledAt) updateData.interview.scheduledAt = scheduledAt;
-        if (type) updateData.interview.type = type;
-        if (location) updateData.interview.location = location;
-        if (notes) updateData.interview.notes = notes;
-        if (status) updateData.interview.status = status;
-
-        const application = await Application.findByIdAndUpdate(
-            req.params.id,
-            updateData,
-            { new: true, runValidators: true }
-        );
+        const application = await Application.findById(id);
 
         if (!application) {
-            return res.status(404).json({
-                success: false,
-                message: 'Application not found'
-            });
+            return res.status(404).json({ success: false, message: 'Application not found' });
         }
+
+        const interview = application.interviews.id(interviewId);
+        if (!interview) {
+            return res.status(404).json({ success: false, message: 'Interview not found' });
+        }
+
+        if (scheduledAt) interview.scheduledAt = scheduledAt;
+        if (type) interview.type = type;
+        if (location) interview.location = location;
+        if (notes) interview.notes = notes;
+        if (status) interview.status = status;
+
+        await application.save();
 
         res.status(200).json({
             success: true,
             data: application
         });
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: 'Server Error',
-            error: error.message
+        res.status(500).json({ success: false, message: 'Server Error', error: error.message });
+    }
+};
+
+// @desc    Schedule an interview
+// @route   POST /api/v1/employer/applicants/:id/interviews
+// @access  Private (Employer)
+export const scheduleInterview = async (req, res) => {
+    try {
+        const { scheduledAt, duration, type, location, notes, interviewers } = req.body;
+
+        const application = await Application.findById(req.params.id);
+
+        if (!application) {
+            return res.status(404).json({ success: false, message: 'Application not found' });
+        }
+
+        application.interviews.push({
+            scheduledAt,
+            duration,
+            type,
+            location,
+            notes,
+            interviewers: interviewers || [req.user.id],
+            status: 'Scheduled'
         });
+
+        if (application.hiringStage !== 'Interview') {
+            application.hiringStage = 'Interview';
+        }
+
+        await application.save();
+
+        res.status(200).json({
+            success: true,
+            data: application
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Server Error', error: error.message });
+    }
+};
+
+// @desc    Add feedback to an interview
+// @route   POST /api/v1/employer/applicants/:id/interviews/:interviewId/feedback
+// @access  Private (Employer)
+export const addInterviewFeedback = async (req, res) => {
+    try {
+        const { rating, comment } = req.body;
+        const { id, interviewId } = req.params;
+
+        const application = await Application.findById(id);
+
+        if (!application) {
+            return res.status(404).json({ success: false, message: 'Application not found' });
+        }
+
+        const interview = application.interviews.id(interviewId);
+        if (!interview) {
+            return res.status(404).json({ success: false, message: 'Interview not found' });
+        }
+
+        interview.feedback.push({
+            rating,
+            comment,
+            submittedBy: req.user.id,
+            submittedAt: Date.now()
+        });
+
+        if (interview.status !== 'Completed') {
+            interview.status = 'Completed';
+        }
+
+        await application.save();
+
+        res.status(200).json({
+            success: true,
+            data: application
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Server Error', error: error.message });
     }
 };
 

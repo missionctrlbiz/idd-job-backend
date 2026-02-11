@@ -105,3 +105,63 @@ export const getMe = async (req, res) => {
         });
     }
 };
+
+// @desc    Update user profile
+// @route   PUT /api/v1/auth/profile
+// @access  Private
+export const updateProfile = async (req, res) => {
+    try {
+        const fieldsToUpdate = {};
+
+        // Helper to check if value exists
+        const hasValue = (val) => val !== undefined && val !== null;
+
+        if (hasValue(req.body.name)) fieldsToUpdate.name = req.body.name;
+        if (hasValue(req.body.email)) fieldsToUpdate.email = req.body.email;
+        if (hasValue(req.body.phone)) fieldsToUpdate.phone = req.body.phone;
+        if (hasValue(req.body.avatar)) fieldsToUpdate.avatar = req.body.avatar;
+        if (hasValue(req.body.bio)) fieldsToUpdate.bio = req.body.bio;
+        if (hasValue(req.body.gender)) fieldsToUpdate.gender = req.body.gender;
+        if (hasValue(req.body.dateOfBirth)) fieldsToUpdate.dateOfBirth = req.body.dateOfBirth;
+        if (hasValue(req.body.languages)) fieldsToUpdate.languages = req.body.languages;
+
+        // Employer specific
+        if (hasValue(req.body.company)) fieldsToUpdate.company = req.body.company;
+
+        // Profile fields
+        if (hasValue(req.body.headline)) fieldsToUpdate['profile.headline'] = req.body.headline;
+        if (hasValue(req.body.location)) fieldsToUpdate['profile.location'] = req.body.location;
+        if (hasValue(req.body.isOpenToWork)) fieldsToUpdate['profile.isOpenToWork'] = req.body.isOpenToWork;
+        if (hasValue(req.body.address)) fieldsToUpdate['profile.address'] = req.body.address;
+        if (hasValue(req.body.socialLinks)) fieldsToUpdate['profile.socialLinks'] = req.body.socialLinks;
+        if (hasValue(req.body.aboutMe)) fieldsToUpdate['profile.aboutMe'] = req.body.aboutMe;
+        if (hasValue(req.body.currentJob)) fieldsToUpdate['profile.currentJob'] = req.body.currentJob;
+        if (hasValue(req.body.qualificationLevel)) fieldsToUpdate['profile.qualificationLevel'] = req.body.qualificationLevel;
+        if (hasValue(req.body.experienceYears)) fieldsToUpdate['profile.experienceYears'] = req.body.experienceYears;
+        if (hasValue(req.body.highestEducation)) fieldsToUpdate['profile.highestEducation'] = req.body.highestEducation;
+        if (hasValue(req.body.skills)) fieldsToUpdate['profile.skills'] = req.body.skills;
+        if (hasValue(req.body.licenses)) fieldsToUpdate['profile.licenses'] = req.body.licenses;
+        if (hasValue(req.body.workExperience)) fieldsToUpdate['profile.workExperience'] = req.body.workExperience;
+        if (hasValue(req.body.education)) fieldsToUpdate['profile.education'] = req.body.education;
+        if (hasValue(req.body.certifications)) fieldsToUpdate['profile.certifications'] = req.body.certifications;
+        if (hasValue(req.body.desiredSalary)) fieldsToUpdate['profile.desiredSalary'] = req.body.desiredSalary;
+        if (hasValue(req.body.availability)) fieldsToUpdate['profile.availability'] = req.body.availability;
+        if (hasValue(req.body.preferredShifts)) fieldsToUpdate['profile.preferredShifts'] = req.body.preferredShifts;
+
+        const user = await User.findByIdAndUpdate(req.user.id, { $set: fieldsToUpdate }, {
+            new: true,
+            runValidators: true
+        });
+
+        res.status(200).json({
+            success: true,
+            data: user
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Server Error',
+            error: error.message
+        });
+    }
+};
