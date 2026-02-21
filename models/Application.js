@@ -15,11 +15,43 @@ const applicationSchema = new mongoose.Schema({
     // Application content
     coverLetter: {
         type: String,
-        maxlength: [2000, 'Cover letter cannot exceed 2000 characters']
+        maxlength: [5000, 'Cover letter cannot exceed 5000 characters']
     },
     resume: {
         url: String,
         filename: String
+    },
+
+    // AI-Powered Fields (populated at application time via Gemini)
+    aiQualificationScore: {
+        type: Number,
+        min: 0,
+        max: 100,
+        default: null
+    },
+    aiMatchedSkills: {
+        type: [String],
+        default: []
+    },
+    aiMissingSkills: {
+        type: [String],
+        default: []
+    },
+    aiStrengths: {
+        type: [String],
+        default: []
+    },
+    aiAssessmentSummary: {
+        type: String,
+        default: null
+    },
+    aiCoverLetter: {
+        type: String,
+        default: null
+    },
+    resumeParsedData: {
+        type: mongoose.Schema.Types.Mixed,
+        default: null
     },
 
     // Applicant details (snapshot at time of application)

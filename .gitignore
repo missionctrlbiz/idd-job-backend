@@ -1,3 +1,7 @@
 node_modules
 .env
 error.log
+combined.log
+uploads/
+test-gemini.js
+test-gemini-models.js

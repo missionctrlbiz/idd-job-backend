@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import fs from 'fs';
 import connectDB from './config/db.js';
 import jobRoutes from './routes/jobRoutes.js';
 import authRoutes from './routes/authRoutes.js';
@@ -11,10 +12,14 @@ import userRoutes from './routes/userRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import settingsRoutes from './routes/settingsRoutes.js';
 import employerRoutes from './routes/employerRoutes.js';
+import aiRoutes from './routes/aiRoutes.js';
 import logger from './utils/logger.js';
 
 // Load env vars
 dotenv.config();
+
+// Ensure uploads directory exists (multer destination)
+fs.mkdirSync('uploads', { recursive: true });
 
 // Connect to database
 connectDB();
@@ -121,6 +126,7 @@ app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/messages', messageRoutes);
 app.use('/api/v1/settings', settingsRoutes);
 app.use('/api/v1/employer', employerRoutes);
+app.use('/api/v1/ai', aiRoutes);
 
 // Backwards-compatible mounts (some clients may call /auth or /applications without the /api/v1 prefix)
 app.use('/auth', authRoutes);
@@ -154,7 +160,8 @@ app.get('/', (req, res) => {
             users: '/api/v1/users',
             messages: '/api/v1/messages',
             settings: '/api/v1/settings',
-            employer: '/api/v1/employer'
+            employer: '/api/v1/employer',
+            ai: '/api/v1/ai'
         }
     });
 });

@@ -10,7 +10,12 @@ import logger from '../utils/logger.js';
 // @access  Private (Candidate)
 export const applyForJob = async (req, res) => {
     try {
-        const { jobId, coverLetter, fullName, email, phone, linkedin, portfolio, jobTitle } = req.body;
+        const {
+            jobId, coverLetter, fullName, email, phone, linkedin, portfolio, jobTitle,
+            // AI data passed from frontend after running parse + qualification check
+            aiQualificationScore, aiMatchedSkills, aiMissingSkills, aiStrengths,
+            aiAssessmentSummary, aiCoverLetter, resumeParsedData
+        } = req.body;
 
         // Validate basic fields
         if (!jobId) {
@@ -47,13 +52,21 @@ export const applyForJob = async (req, res) => {
                 url: resumeUrl,
                 filename: req.file.originalname
             };
-        } else if (req.body.resume) {
-            // Fallback if resume is sent as a URL string (not file)
+        } else if (req.body.resumeUrl) {
             resumeData = {
-                url: req.body.resume,
-                filename: 'External Resume'
+                url: req.body.resumeUrl,
+                filename: req.body.resumeFilename || 'Resume'
             };
         }
+
+        // Parse AI fields safely
+        const parseJsonField = (field) => {
+            if (!field) return undefined;
+            if (typeof field === 'string') {
+                try { return JSON.parse(field); } catch { return undefined; }
+            }
+            return field;
+        };
 
         // Create Application
         const application = await Application.create({
@@ -68,11 +81,20 @@ export const applyForJob = async (req, res) => {
                 linkedIn: linkedin,
                 portfolio: portfolio,
                 currentTitle: jobTitle
-            }
+            },
+            // AI fields
+            aiQualificationScore: aiQualificationScore != null ? Number(aiQualificationScore) : null,
+            aiMatchedSkills: parseJsonField(aiMatchedSkills) || [],
+            aiMissingSkills: parseJsonField(aiMissingSkills) || [],
+            aiStrengths: parseJsonField(aiStrengths) || [],
+            aiAssessmentSummary: aiAssessmentSummary || null,
+            aiCoverLetter: aiCoverLetter || null,
+            resumeParsedData: parseJsonField(resumeParsedData) || null,
         });
 
         res.status(201).json({
             success: true,
+            message: 'Application submitted successfully!',
             data: application
         });
     } catch (error) {
@@ -91,7 +113,7 @@ export const applyForJob = async (req, res) => {
 export const getMyApplications = async (req, res) => {
     try {
         const applications = await Application.find({ applicant: req.user.id })
-            .populate('job', 'title company location type roleCategory');
+            .populate('job', 'title company location type roleCategory logo');
 
         res.status(200).json({
             success: true,
@@ -104,6 +126,30 @@ export const getMyApplications = async (req, res) => {
             message: 'Server Error',
             error: error.message
         });
+    }
+};
+
+// @desc    Get a single application by ID (jobseeker sees own, employer sees theirs)
+// @route   GET /api/v1/applications/:id
+// @access  Private
+export const getApplicationById = async (req, res) => {
+    try {
+        const application = await Application.findById(req.params.id)
+            .populate('job', 'title company location type roleCategory logo requirements qualifications certifications')
+            .populate('applicant', 'name email profile');
+
+        if (!application) {
+            return res.status(404).json({ success: false, message: 'Application not found' });
+        }
+
+        // Jobseeker can only see their own
+        if (req.user.role === 'jobseeker' && application.applicant._id.toString() !== req.user.id) {
+            return res.status(403).json({ success: false, message: 'Not authorized' });
+        }
+
+        res.status(200).json({ success: true, data: application });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Server Error', error: error.message });
     }
 };
 
