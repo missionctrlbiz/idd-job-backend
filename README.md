@@ -3,33 +3,33 @@
 The backend API for the IDD (Intellectual and Developmental Disabilities) Job Platform. This RESTful API powers the job board, applicant tracking system (ATS), and user management features. Built with Node.js, Express, and MongoDB.
 
 ## 🚀 Live Deployment
+
 - **Backend Base URL:** `https://idd-job-backend.onrender.com`
 - **API Documentation:** [https://documenter.getpostman.com/view/52633263/2sBXcGEKs5](https://documenter.getpostman.com/view/52633263/2sBXcGEKs5)
 
 ## 🚀 Features
 
-
--   **User Authentication**: JWT-based auth for Job Seekers, Employers, and Admins.
--   **Job Management**: Create, read, update, and delete job postings.
--   **Application System**: Candidates can apply with resumes; Employers can track hiring stages.
--   **Employer Dashboard**: Analytics, applicant filtering, and team collaboration notes.
--   **User Profiles**: specialized profiles for caregivers and healthcare professionals.
+- **User Authentication**: JWT-based auth for Job Seekers, Employers, and Admins.
+- **Job Management**: Create, read, update, and delete job postings.
+- **Application System**: Candidates can apply with resumes; Employers can track hiring stages.
+- **Employer Dashboard**: Analytics, applicant filtering, and team collaboration notes.
+- **User Profiles**: specialized profiles for caregivers and healthcare professionals.
 
 ## 🛠️ Tech Stack
 
--   **Runtime**: Node.js 18+
--   **Framework**: Express.js
--   **Database**: MongoDB Atlas
--   **ODM**: Mongoose
--   **Authentication**: JSON Web Tokens (JWT) & bcrypt
--   **Security**: Helmet, CORS, Rate Limiting (planned)
+- **Runtime**: Node.js 18+
+- **Framework**: Express.js
+- **Database**: MongoDB Atlas
+- **ODM**: Mongoose
+- **Authentication**: JSON Web Tokens (JWT) & bcrypt
+- **Security**: Helmet, CORS, Rate Limiting (planned)
 
 ## 📦 Installation & Setup
 
 ### 1. Prerequisites
 
--   [Node.js](https://nodejs.org/) (v18 or higher)
--   [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account (or a local MongoDB instance)
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account (or a local MongoDB instance)
 
 ### 2. Clone the Repository
 
@@ -54,23 +54,25 @@ cp .env.example .env
 
 **Required Variables:**
 
-| Variable       | Description                                                 | Example                                                      |
-| :------------- | :---------------------------------------------------------- | :----------------------------------------------------------- |
-| `NODE_ENV`     | Environment mode (`development` or `production`)            | `development`                                                |
-| `PORT`         | Server port                                                 | `5000`                                                       |
-| `MONGO_DB`     | MongoDB Connection String                                   | `mongodb+srv://user:pass@cluster.mongodb.net/dbname`         |
-| `JWT_SECRET`   | Secret key for signing tokens                               | `super_secret_key_change_me`                                 |
-| `JWT_EXPIRE`   | Token expiration time                                       | `30d`                                                        |
-| `CORS_ORIGINS` | Comma-separated list of allowed origins                     | `http://localhost:3000,https://iddjobplatform.vercel.app`    |
+| Variable       | Description                                      | Example                                                   |
+| :------------- | :----------------------------------------------- | :-------------------------------------------------------- |
+| `NODE_ENV`     | Environment mode (`development` or `production`) | `development`                                             |
+| `PORT`         | Server port                                      | `5000`                                                    |
+| `MONGO_DB`     | MongoDB Connection String                        | `mongodb+srv://user:pass@cluster.mongodb.net/dbname`      |
+| `JWT_SECRET`   | Secret key for signing tokens                    | `super_secret_key_change_me`                              |
+| `JWT_EXPIRE`   | Token expiration time                            | `30d`                                                     |
+| `CORS_ORIGINS` | Comma-separated list of allowed origins          | `http://localhost:3000,https://iddjobplatform.vercel.app` |
 
 ### 5. Running the API
 
 **Development Mode** (with hot-reload):
+
 ```bash
 npm run dev
 ```
 
 **Production Mode**:
+
 ```bash
 npm start
 ```
@@ -82,6 +84,7 @@ To populate the database with initial sample data (Users, Jobs, Applications):
 ```bash
 npm run seed
 ```
+
 > **Note**: This will clear existing data in the connected database.
 
 ## 📚 API Documentation
@@ -93,6 +96,7 @@ Full interactive documentation is published on Postman:
 Covers all 35+ endpoints across 8 modules: Auth, Jobs, Applications, Employer Dashboard, Users, Messages, AI Services, and Settings.
 
 ### Base URL
+
 - **Production:** `https://idd-job-backend.onrender.com/api/v1`
 - **Local:** `http://localhost:5000/api/v1`
 
@@ -101,6 +105,7 @@ Covers all 35+ endpoints across 8 modules: Auth, Jobs, Applications, Employer Da
 This application follows the **12-Factor App** methodology and can be deployed to any cloud provider (AWS, Render, Heroku, etc.) that supports Node.js.
 
 ### Production Environment
+
 Ensure the following environment variables are set in your production environment (e.g., AWS Elastic Beanstalk, EC2, or Render):
 
 - `NODE_ENV`: Set to `production`
@@ -109,10 +114,13 @@ Ensure the following environment variables are set in your production environmen
 - `CORS_ORIGINS`: Comma-separated list of allowed frontend domains (e.g., specific AWS CloudFront URLs or Vercel domains)
 
 ### CI/CD
+
 The repository is configured for continuous deployment. Pushes to the `main` branch trigger the deployment pipeline defined in your CI/CD configuration (e.g., GitHub Actions).
 
 ### Frontend Integration
+
 The backend is CORS-enabled and can be consumed by any frontend that is whitelisted in `CORS_ORIGINS`.
+
 - **Local Development**: `http://localhost:3000`
 - **Production**: Your deployed frontend URL
 
