@@ -180,7 +180,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: true,
             urgent: false,
-            employer: sunriseId,
+            employerId: sunriseId,
             postedAt: new Date('2026-01-03'),
             expiresAt: new Date('2026-02-03')
         },
@@ -220,7 +220,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: false,
             urgent: true,
-            employer: sunriseId,
+            employerId: sunriseId,
             postedAt: new Date('2026-01-05'),
             expiresAt: new Date('2026-01-26')
         },
@@ -262,7 +262,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: false,
             urgent: false,
-            employer: pathwaysId,
+            employerId: pathwaysId,
             postedAt: new Date('2026-01-02'),
             expiresAt: new Date('2026-02-02')
         },
@@ -306,7 +306,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: false,
             urgent: false,
-            employer: pathwaysId,
+            employerId: pathwaysId,
             postedAt: new Date('2026-01-04'),
             expiresAt: new Date('2026-02-04')
         },
@@ -346,7 +346,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: false,
             urgent: false,
-            employer: sunriseId,
+            employerId: sunriseId,
             postedAt: new Date('2025-12-28'),
             expiresAt: new Date('2026-01-28')
         },
@@ -389,7 +389,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: true,
             urgent: true,
-            employer: pathwaysId,
+            employerId: pathwaysId,
             postedAt: new Date('2026-01-06'),
             expiresAt: new Date('2026-02-06')
         },
@@ -437,7 +437,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: true,
             urgent: false,
-            employer: sunriseId,
+            employerId: sunriseId,
             postedAt: new Date('2026-01-01'),
             expiresAt: new Date('2026-02-15')
         },
@@ -479,7 +479,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: false,
             urgent: false,
-            employer: pathwaysId,
+            employerId: pathwaysId,
             postedAt: new Date('2026-01-03'),
             expiresAt: new Date('2026-02-03')
         },
@@ -518,7 +518,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: false,
             urgent: true,
-            employer: sunriseId,
+            employerId: sunriseId,
             postedAt: new Date('2026-01-05'),
             expiresAt: new Date('2026-02-05')
         },
@@ -566,7 +566,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: true,
             urgent: false,
-            employer: sunriseId,
+            employerId: sunriseId,
             postedAt: new Date('2025-12-20'),
             expiresAt: new Date('2026-01-31')
         },
@@ -609,7 +609,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: false,
             urgent: false,
-            employer: pathwaysId,
+            employerId: pathwaysId,
             postedAt: new Date('2026-01-02'),
             expiresAt: new Date('2026-02-02')
         },
@@ -654,7 +654,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: false,
             urgent: false,
-            employer: sunriseId,
+            employerId: sunriseId,
             postedAt: new Date('2026-01-04'),
             expiresAt: new Date('2026-02-04')
         },
@@ -698,7 +698,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: false,
             urgent: false,
-            employer: pathwaysId,
+            employerId: pathwaysId,
             postedAt: new Date('2026-01-01'),
             expiresAt: new Date('2026-02-01')
         },
@@ -741,7 +741,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: false,
             urgent: false,
-            employer: sunriseId,
+            employerId: sunriseId,
             postedAt: new Date('2026-01-03'),
             expiresAt: new Date('2026-02-03')
         },
@@ -785,7 +785,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: false,
             urgent: false,
-            employer: pathwaysId,
+            employerId: pathwaysId,
             postedAt: new Date('2025-12-30'),
             expiresAt: new Date('2026-01-30')
         },
@@ -827,7 +827,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: false,
             urgent: false,
-            employer: sunriseId,
+            employerId: sunriseId,
             postedAt: new Date('2026-01-05'),
             expiresAt: new Date('2026-02-05')
         },
@@ -868,7 +868,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: false,
             urgent: false,
-            employer: pathwaysId,
+            employerId: pathwaysId,
             postedAt: new Date('2026-01-04'),
             expiresAt: new Date('2026-02-04')
         },
@@ -911,7 +911,7 @@ const generateJobs = (employers) => {
             status: 'Open',
             featured: true,
             urgent: false,
-            employer: sunriseId,
+            employerId: sunriseId,
             postedAt: new Date('2025-12-15'),
             expiresAt: new Date('2026-02-15')
         }
@@ -1096,3 +1096,4 @@ const run = async () => {
 };
 
 run();
+

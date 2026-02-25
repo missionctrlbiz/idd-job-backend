@@ -4,7 +4,7 @@ The backend API for the IDD (Intellectual and Developmental Disabilities) Job Pl
 
 ## 🚀 Live Deployment
 - **Backend Base URL:** `https://idd-job-backend.onrender.com`
-- **Frontend Guide:** Please refer to [FRONTEND_GUIDE.md](./FRONTEND_GUIDE.md) for detailed integration instructions.
+- **API Documentation:** [https://documenter.getpostman.com/view/52633263/2sBXcGEKs5](https://documenter.getpostman.com/view/52633263/2sBXcGEKs5)
 
 ## 🚀 Features
 
@@ -86,28 +86,15 @@ npm run seed
 
 ## 📚 API Documentation
 
+Full interactive documentation is published on Postman:
+
+👉 **[https://documenter.getpostman.com/view/52633263/2sBXcGEKs5](https://documenter.getpostman.com/view/52633263/2sBXcGEKs5)**
+
+Covers all 35+ endpoints across 8 modules: Auth, Jobs, Applications, Employer Dashboard, Users, Messages, AI Services, and Settings.
+
 ### Base URL
 - **Production:** `https://idd-job-backend.onrender.com/api/v1`
 - **Local:** `http://localhost:5000/api/v1`
-
-
-### Key Endpoints
-
-#### Authentication
-- `POST /auth/register` - Register a new user (Job Seeker or Employer)
-- `POST /auth/login` - Login and receive JWT
-- `GET /auth/me` - Get current user profile
-
-#### Jobs
-- `GET /jobs` - List all jobs (supports pagination & filtering)
-- `GET /jobs/:id` - Get job details
-- `POST /jobs` - Post a new job (Employer only)
-
-#### Employer Dashboard
-- `GET /employer/dashboard/overview` - Get high-level stats
-- `GET /employer/applicants` - List applicants across all jobs
-- `GET /employer/applicants/:id` - View specific applicant details
-- `PUT /employer/applicants/:id/stage` - Update hiring stage (e.g., Interview, Hired)
 
 ## 🚢 Deployment
 
