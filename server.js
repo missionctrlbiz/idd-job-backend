@@ -12,7 +12,8 @@ import userRoutes from './routes/userRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import settingsRoutes from './routes/settingsRoutes.js';
 import employerRoutes from './routes/employerRoutes.js';
-import aiRoutes from './routes/aiRoutes.js';
+// AI routes commented out — experimental Gemini features disabled
+// import aiRoutes from './routes/aiRoutes.js';
 import logger from './utils/logger.js';
 
 // Load env vars
@@ -126,7 +127,8 @@ app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/messages', messageRoutes);
 app.use('/api/v1/settings', settingsRoutes);
 app.use('/api/v1/employer', employerRoutes);
-app.use('/api/v1/ai', aiRoutes);
+// AI routes disabled — Gemini/AI features commented out
+// app.use('/api/v1/ai', aiRoutes);
 
 // Backwards-compatible mounts (some clients may call /auth or /applications without the /api/v1 prefix)
 app.use('/auth', authRoutes);
@@ -160,8 +162,8 @@ app.get('/', (req, res) => {
             users: '/api/v1/users',
             messages: '/api/v1/messages',
             settings: '/api/v1/settings',
-            employer: '/api/v1/employer',
-            ai: '/api/v1/ai'
+            employer: '/api/v1/employer'
+            // ai: '/api/v1/ai' — disabled
         }
     });
 });

@@ -1,8 +1,16 @@
+// =============================================================================
+// AI ROUTES — DISABLED
+// Not mounted in server.js — Gemini/AI features are out of scope for now.
+// =============================================================================
+
+/*
 import express from 'express';
 import { parseResume, checkQualification } from '../controllers/aiController.js';
 import { protect, authorize } from '../middleware/authMiddleware.js';
 import upload from '../middleware/uploadMiddleware.js';
+*/
 
+/*
 const router = express.Router();
 
 router.use(protect); // All AI routes require auth
@@ -14,3 +22,4 @@ router.post('/parse-resume', authorize('jobseeker'), upload.single('resume'), pa
 router.post('/check-qualification', authorize('jobseeker'), checkQualification);
 
 export default router;
+*/

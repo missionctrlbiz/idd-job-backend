@@ -22,7 +22,9 @@ const applicationSchema = new mongoose.Schema({
         filename: String
     },
 
-    // AI-Powered Fields (populated at application time via Gemini)
+    // AI-Powered Fields — DISABLED (Gemini features commented out)
+    // Restore when AI functionality is re-enabled
+    /*
     aiQualificationScore: {
         type: Number,
         min: 0,
@@ -53,6 +55,7 @@ const applicationSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.Mixed,
         default: null
     },
+    */
 
     // Applicant details (snapshot at time of application)
     applicantInfo: {

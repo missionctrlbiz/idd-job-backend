@@ -1,3 +1,10 @@
+// =============================================================================
+// AI CONTROLLER — DISABLED
+// Gemini / AI features commented out. Not in scope for current release.
+// To re-enable: uncomment aiRoutes in server.js and restore this file.
+// =============================================================================
+
+/* --- DISABLED IMPORTS ---
 import { createRequire } from 'module';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import Job from '../models/Job.js';
@@ -8,10 +15,12 @@ import path from 'path';
 // pdf-parse is CommonJS-only; use createRequire to load it in an ESM context
 const require = createRequire(import.meta.url);
 const pdfParse = require('pdf-parse');
+--- END DISABLED IMPORTS */
 
 // ============================================================================
-// Helper: Call Gemini with a prompt and return parsed JSON
+// Helper: Call Gemini with a prompt and return parsed JSON  [DISABLED]
 // ============================================================================
+/*
 async function callGemini(prompt) {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     const model = genAI.getGenerativeModel({ model: 'gemini-3-pro-preview' });
@@ -22,12 +31,14 @@ async function callGemini(prompt) {
     const cleaned = text.replace(/```json\n?/gi, '').replace(/```\n?/gi, '').trim();
     return JSON.parse(cleaned);
 }
+*/
 
 // ============================================================================
-// @desc    Parse a resume PDF and extract structured data
+// @desc    Parse a resume PDF and extract structured data  [DISABLED]
 // @route   POST /api/v1/ai/parse-resume
 // @access  Private (jobseeker)
 // ============================================================================
+/*
 export const parseResume = async (req, res) => {
     try {
         if (!req.file) {
@@ -136,12 +147,14 @@ Return ONLY the JSON object. No markdown, no explanation.
         });
     }
 };
+*/
 
 // ============================================================================
-// @desc    Check candidate qualification against a job
+// @desc    Check candidate qualification against a job  [DISABLED]
 // @route   POST /api/v1/ai/check-qualification
 // @access  Private (jobseeker)
 // ============================================================================
+/*
 export const checkQualification = async (req, res) => {
     try {
         const { jobId, resumeText, parsedData } = req.body;
@@ -275,3 +288,4 @@ Return ONLY the cover letter text, no JSON.
         });
     }
 };
+*/
